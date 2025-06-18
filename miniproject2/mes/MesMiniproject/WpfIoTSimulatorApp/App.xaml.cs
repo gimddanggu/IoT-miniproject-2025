@@ -19,9 +19,11 @@ namespace WpfIoTSimulatorApp
             {
                 DataContext = viewModel,
             };
+
+            viewModel.StartHmiRequested += view.StartHmiAni;
+            viewModel.StartSensorCheckRequested += view.StartSensorCheck; // VM에서 View에 있는 이벤트를 호출
+
             view.ShowDialog();
         }
-
     }
-
 }
