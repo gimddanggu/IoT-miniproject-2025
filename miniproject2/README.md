@@ -83,6 +83,10 @@ ERD
 3. View, ViewModel 구성
 4. WPF 애니메이션 기능으로 컨베이어벨트 구현
 
+
+    https://github.com/user-attachments/assets/b2aa12d2-11c4-4a23-9fb3-3dfc30cce0e9
+
+
 ##### MQTT Subscriber
 - WPF 과목에서 사용했던 MQTT Subscriber 그대로 사용
 - WpfMqttSubApp 프로젝트 가져오기
