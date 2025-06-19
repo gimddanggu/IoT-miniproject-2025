@@ -30,7 +30,7 @@
             </Grid.RowDefinitions>
             <!-- Button 영역 -->
             <StackPanel Grid.Row="0" Orientation="Horizontal">
-                <Button Content="Test" Command="{Binding MoveCommand}"/>
+                <Button Content="Move" Command="{Binding MoveCommand}"/>
                 <Button Content="check" Command="{Binding CheckCommand}"/>
             </StackPanel>
             <!-- HMI(Human Machine Interface) Like -->
