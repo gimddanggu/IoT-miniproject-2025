@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls.Dialogs;
+using System.Windows;
+using System.Windows.Controls;
 using WpfMrpSimulatorApp.Helpers;
 using WpfMrpSimulatorApp.Views;
 
@@ -23,13 +18,15 @@ namespace WpfMrpSimulatorApp.ViewModels
 
         public MainViewModel(IDialogCoordinator coordinator)
         {
-            this.dialogCoordinator = coordinator;
+            this.dialogCoordinator = coordinator; // 다이얼로그 코디네이터 초기화
+
             Greeting = "MRP 공정관리!";
         }
+
         public string Greeting
         {
             get => _greeting;
-            set => SetProperty(ref _greeting, value);   
+            set => SetProperty(ref _greeting, value);
         }
 
         public UserControl CurrentView
@@ -41,13 +38,12 @@ namespace WpfMrpSimulatorApp.ViewModels
         [RelayCommand]
         public async Task AppExit()
         {
-            //var result = MessageBox.Show("종료할 거?", "종료확인", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            var result = await this.dialogCoordinator.ShowMessageAsync(this, "종료확인", "종료할것이니?", MessageDialogStyle.AffirmativeAndNegative);
-            if (result == MessageDialogResult.Affirmative)
+            //var result = MessageBox.Show("종료하시겠습니까?", "종료확인", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            var result = await this.dialogCoordinator.ShowMessageAsync(this, "종료확인", "종료하시겠습니까?", MessageDialogStyle.AffirmativeAndNegative);
+            if (result == MessageDialogResult.Affirmative) 
             {
                 Application.Current.Shutdown();
-            }
-            else
+            } else
             {
                 return;
             }
@@ -56,9 +52,20 @@ namespace WpfMrpSimulatorApp.ViewModels
         [RelayCommand]
         public void AppSetting()
         {
-            //var result = MessageBox.Show("종료할 거?", "종료확인", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            var viewModel = new SettingViewModel();
+            var viewModel = new SettingViewModel(Common.DIALOGCOORDINATOR);
             var view = new SettingView
+            {
+                DataContext = viewModel,
+            };
+
+            CurrentView = view;
+        }
+
+        [RelayCommand]
+        public void SetSchedule()
+        {
+            var viewModel = new ScheduleViewModel(Common.DIALOGCOORDINATOR);
+            var view = new ScheduleView
             {
                 DataContext = viewModel,
             };

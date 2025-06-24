@@ -1,17 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using MahApps.Metro.Controls;
+﻿using MahApps.Metro.Controls;
 
 namespace WpfMrpSimulatorApp.Views
 {
@@ -27,7 +14,7 @@ namespace WpfMrpSimulatorApp.Views
 
         private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            e.Cancel = true; // x 버튼을 눌러도, Alt+F4를 눌러도 종료되지 않게
+            e.Cancel = true; // x버튼을 눌러도, Alt+F4를 해도 안꺼짐
         }
     }
 }
