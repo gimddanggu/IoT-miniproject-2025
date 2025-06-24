@@ -39,7 +39,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="{Binding}" Foreground="White" VerticalAlignment="Center" />
-                                <iconPacks:PackIconVaadinIcons Kind="Cogs" Foreground="AntiqueWhite" />
+                                <iconPacks:PackIconVaadinIcons Kind="Cogs" Foreground="AntiqueWhite" Margin="0,5,0,0"/>
                             </StackPanel>
                         </DataTemplate>
                     </Button.ContentTemplate>
@@ -51,7 +51,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="{Binding}" Foreground="White" VerticalAlignment="Center" />
-                                <iconPacks:PackIconModern Kind="Calendar" Foreground="AntiqueWhite" />
+                                <iconPacks:PackIconModern Kind="Calendar" Foreground="AntiqueWhite" Margin="0,5,0,0"/>
                             </StackPanel>
                         </DataTemplate>
                     </Button.ContentTemplate>
@@ -62,7 +62,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="{Binding}" Foreground="White" VerticalAlignment="Center" />
-                                <iconPacks:PackIconUnicons Kind="EyeLine" Foreground="AntiqueWhite" />
+                                <iconPacks:PackIconUnicons Kind="EyeLine" Foreground="AntiqueWhite" Margin="0,5,0,0" />
                             </StackPanel>
                         </DataTemplate>
                     </Button.ContentTemplate>
@@ -73,7 +73,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="{Binding}" Foreground="White" VerticalAlignment="Center" />
-                                <iconPacks:PackIconUnicons Kind="FileGraphLine" Foreground="AntiqueWhite" />
+                                <iconPacks:PackIconUnicons Kind="FileGraphLine" Foreground="AntiqueWhite" Margin="0,5,0,0"/>
                             </StackPanel>
                         </DataTemplate>
                     </Button.ContentTemplate>

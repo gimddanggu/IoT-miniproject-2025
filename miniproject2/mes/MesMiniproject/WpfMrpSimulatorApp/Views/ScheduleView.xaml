@@ -25,7 +25,7 @@
         <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Margin="2">
             <Label Content="공정계획" FontSize="14" FontWeight="Bold"
                    VerticalContentAlignment="Bottom" HorizontalAlignment="Left" />
-            <iconPacks:PackIconModern Kind="Calendar" />
+            <iconPacks:PackIconModern Kind="Calendar" Margin="0,6,0,0"/>
         </StackPanel>
         
         <!-- UI구성 데이터그리드 -->
