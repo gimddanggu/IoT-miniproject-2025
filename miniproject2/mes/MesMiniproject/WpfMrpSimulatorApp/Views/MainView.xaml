@@ -87,7 +87,7 @@
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="{Binding}" Foreground="White" VerticalAlignment="Center" />
-                            <iconPacks:PackIconEvaIcons Kind="PowerOutline" Foreground="AntiqueWhite" />
+                            <iconPacks:PackIconEvaIcons Kind="PowerOutline" Foreground="AntiqueWhite" Margin="0,5,0,0" />
                         </StackPanel>
                     </DataTemplate>
                 </Button.ContentTemplate>

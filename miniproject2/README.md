@@ -111,12 +111,12 @@ ERD
 ##### WPF 공정관리 앱 개발
 - 기본적인 DB관리 앱 + 실시간 공정 모니터링 + 리포트 시각화
 
-1. CommuniityToolkit.Mvvm, MahApps.Metro 초기 설정
+1. CommunityToolkit.Mvvm, MahApps.Metro 초기 설정
 2. MainView.xaml UI 디자인
 3. SettingView.xaml 생성
 4. Helpers.Common 클래스 정적 인스턴스 변수 작성
 5. SettingView 화면 UI 구현
-6. SettingViewModel과 연동 작업
+6. SetttngViewModel과 연동 작업
 7. Model DB 테이블 클래스 가져오기
 8. Setting 관련, DB연동 조회/입력/수정/삭제 기능 구현
 
@@ -124,6 +124,12 @@ ERD
     - SettingView.xaml 복사 후 이름 변경, 클래스명 변경
     - SettingViewModel.cs 복사 후 이름 변경, 클래스명 변경
 10. ScheduleView 데이터그리드, 입력양식 수정
+
+11. EntityFramework용 패키지 설치
+    - Microsoft.EntityFrameworkCore
+    - Microsoft.EntityFrameworkCore.Tools
+    - Pomelo.EntityFrameworkCore.MySql
+
 
 #### 파이썬 AI + ASP.NET 연동
 - 참조소스
@@ -139,3 +145,4 @@ ERD
 #### 프로젝트 주제 발표
 
 #### 프로젝트 사용 재료선정
+
