@@ -72,5 +72,16 @@ namespace WpfMrpSimulatorApp.ViewModels
 
             CurrentView = view;
         }
+
+        [RelayCommand]
+        public void GetMonitoring()
+        {
+            var viewModel = new MonitoringViewModel(Common.DIALOGCOORDINATOR);
+            var view = new MonitoringView
+            {
+                DataContext = viewModel,
+            };
+            CurrentView = view;
+        }
     }
 }
