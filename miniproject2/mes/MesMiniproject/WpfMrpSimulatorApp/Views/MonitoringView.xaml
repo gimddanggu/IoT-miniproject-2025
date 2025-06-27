@@ -102,7 +102,7 @@
                     <Label Content="/"/>
                     <Label Content="{Binding FailAmount}" Foreground="Red"/>
                 </StackPanel>
-                <Label Grid.Row="6" Grid.Column="1" Content="{Binding SuccessRate}"/>
+                <Label Grid.Row="6" Grid.Column="1" Content="{Binding SuccessRate}" Foreground="Blue"/>
 
                 
             </Grid>

@@ -3,7 +3,9 @@ using CommunityToolkit.Mvvm.Input;
 using MQTTnet;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media;
 using WpfIoTSimulatorApp.Models;
 
@@ -11,6 +13,12 @@ namespace WpfIoTSimulatorApp.ViewModels
 {
     public partial class MainViewModel : ObservableObject
     {
+        #region MQTT 재접속용 변수
+
+        private Timer _mqttMonitorTimer;
+        private bool _isReconnecting;
+        #endregion
+
         #region 뷰와 연계되는 멤버변수/속성과 바인딩 
 
         private string _greeting;
@@ -48,7 +56,11 @@ namespace WpfIoTSimulatorApp.ViewModels
             logNum = 1; // 로그번호를 1부터 시작
             // MQTT 클라이언트 생성 및 초기화
             InitMqttClient();
+
+            // MQTT 재접속확인용 타이머 실행
+            StartMqttMonitor();
         }
+
 
         #endregion
 
@@ -111,8 +123,55 @@ namespace WpfIoTSimulatorApp.ViewModels
             mqttClient.ApplicationMessageReceivedAsync += MqttMessageReceivedAsync;
         }
 
+        private void StartMqttMonitor()
+        {
+            _mqttMonitorTimer = new Timer(async _ =>
+            {
+                await CheckMqttConnectionAsync();   //
+            }, null, TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(10));  // 10초마다 연결여부 확인, 재접속
+        }
+
+        // 핵심. MQTTClient 접속이 끊어지면 재접속
+        private async Task CheckMqttConnectionAsync()
+        {
+            if (!mqttClient.IsConnected)
+            {
+                _isReconnecting = true;
+                LogText = "MQTT 연결해제. 재접속 중...";
+
+                try
+                {
+                    var options = new MqttClientOptionsBuilder()
+                                        .WithTcpServer(brokerHost, 1883)   // 포트가 기존과 다르면 포트번호도 입력 필요
+                                        .WithClientId(clientId)
+                                        .WithCleanSession(true)
+                                        .Build();
+
+                    await mqttClient.ConnectAsync(options);
+                    LogText = "MQTT 재접속 성공!!";
+
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"mqtt 재접속 실패 : {ex.Message}");
+                }
+            }
+        }
+
         private Task MqttMessageReceivedAsync(MqttApplicationMessageReceivedEventArgs arg)
         {
+            var payload = Encoding.UTF8.GetString(arg.ApplicationMessage.Payload);
+
+            // PrcMsg클래스로 Deserialization 처리
+            var data = JsonConvert.DeserializeObject<PrcMsg>(payload);
+
+            //LogText = data.Flag; "on" or "ON"
+            if (data.Flag.ToUpper() == "ON")
+            {
+                Move();     // 애니메이션 시작
+                Thread.Sleep(3300);
+                Check();
+            }
 
             return Task.CompletedTask;
         }
@@ -132,13 +191,21 @@ namespace WpfIoTSimulatorApp.ViewModels
         public void Move()
         {
             ProductBrush = Brushes.Gray;
-            StartHmiRequested?.Invoke();  // 컨베이어벨트 애니메이션 요청(View에서 처리)
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                StartHmiRequested?.Invoke(); // 컨베이어벨트 애니메이션 요청(View에서 처리)
+            });
         }
 
         [RelayCommand]
         public void Check()
         {
-            StartSensorCheckRequested?.Invoke();
+
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                StartSensorCheckRequested?.Invoke();
+            });
+            
             
             // 양품불량품 판단
             Random rand = new();
