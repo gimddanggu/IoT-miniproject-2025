@@ -144,6 +144,7 @@ ERD
     - Start 버튼 눌러서 IoT Simulator 동작시키고 동기화 
     - 체크이후 성공/실패 결과 DB에 저장, 실시간 시각화
 
+https://github.com/user-attachments/assets/12f798a6-76ad-4652-9cad-be5a2b288148
 
 ##### 추후 작업(Miniproject 3)
 1. ReportView, ReportViewModel 작업
@@ -154,6 +155,11 @@ ERD
 - 참조소스
 - iot-webapp-2025/ref/ReferencedSolution/ConvertWebApp 
 - hungout-with-springboot/003_aicombo/
+
+
+
+
+
 
 
 ### 파이널프로젝트 관련
